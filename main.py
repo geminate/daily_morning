@@ -68,7 +68,7 @@ def get_marry_left():
     next = next.replace(year=next.year + 1)
   diff = next.toordinal() - today.toordinal()
   if diff == 0:
-    return {"value":"今天是我们两个的结婚纪念日~ 相亲相爱","color":"#FA9F4E"}
+    return {"value":"今天是我们两个的结婚纪念日~ 庆祝一下吧","color":"#FA9F4E"}
   return {"value":"距离我们的结婚纪念日还有 " + str(diff) + "天"}
 
 def get_words():

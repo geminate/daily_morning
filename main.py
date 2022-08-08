@@ -8,8 +8,10 @@ import random
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
+start_marry_date = os.environ['MARRY_START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
+marry = os.environ['MARRY']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
@@ -37,7 +39,7 @@ def get_weather():
     low_color = '#54D8FF'
 
   if math.floor(weather['high']) >= 30:
-      low_color = '#EE212D'
+    high_color = '#EE212D'
 
   return weather_words, weather_words_color, weather['weather'], math.floor(weather['low']), low_color, math.floor(weather['high']), high_color
 
@@ -45,8 +47,18 @@ def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
 
+def get_count2():
+  delta = today - datetime.strptime(start_marry_date, "%Y-%m-%d")
+  return delta.days
+
 def get_birthday():
   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
+  if next < datetime.now():
+    next = next.replace(year=next.year + 1)
+  return (next - today).days
+
+def get_marry_left():
+  next = datetime.strptime(str(date.today().year) + "-" + marry, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
   return (next - today).days
@@ -65,6 +77,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 weather_words, weather_words_color, weather, temp_low, temp_low_color, temp_high, temp_high_color = get_weather()
-data = {"weather_words":{"value":weather_words,"color":weather_words_color} ,"weather":{"value":weather},"temp_low":{"value":temp_low,"color":temp_low_color},"temp_high":{"value":temp_high,"color":temp_high_color},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather_words":{"value":weather_words,"color":weather_words_color} ,"weather":{"value":weather},"temp_low":{"value":temp_low,"color":temp_low_color},"temp_high":{"value":temp_high,"color":temp_high_color},"next_words":{"value":"每一天都值得铭记↓","color":"#FFB6C1"},"next_words2":{"value":"余生有幸和你在一起","color":"#FFB6C1"},"love_days":{"value":get_count()},"marry_days":{"value":get_count2()},"birthday_left":{"value":get_birthday()},"marry_left":{"value":get_marry_left()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)

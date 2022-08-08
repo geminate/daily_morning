@@ -59,8 +59,8 @@ def get_birthday():
     birth = ZhDate(date.today().year + 1, int(birthday_m), int(birthday_d)).to_datetime()
   diff = birth.toordinal() - today.toordinal()
   if diff == 0:
-    return "今天是你的生日~ 🎂生日快乐"
-  return "距离你的生日还有 " + str(diff) + "天"
+    return {"value":"今天是你的生日~ 🎂生日快乐","color":"#FA9F4E"}
+  return {"value":"距离你的生日还有 " + str(diff) + "天"}
 
 def get_marry_left():
   next = datetime.strptime(str(date.today().year) + "-" + marry, "%Y-%m-%d")
@@ -82,6 +82,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 weather_words, weather_words_color, weather, temp_low, temp_low_color, temp_high, temp_high_color = get_weather()
-data = {"today":{"value":datetime.now().strftime('%Y-%m-%d'),"color":"#87CEEB"},"weather_words":{"value":weather_words,"color":weather_words_color} ,"weather":{"value":weather},"temp_low":{"value":temp_low,"color":temp_low_color},"temp_high":{"value":temp_high,"color":temp_high_color},"next_words":{"value":"每一天都值得铭记↓","color":"#FFB6C1"},"next_words2":{"value":"余生有幸和你在一起","color":"#FFB6C1"},"love_days":{"value":get_count()},"marry_days":{"value":get_count2()},"birthday_left":{"value":get_birthday()},"marry_left":{"value":get_marry_left()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"today":{"value":datetime.now().strftime('%Y-%m-%d'),"color":"#87CEEB"},"weather_words":{"value":weather_words,"color":weather_words_color} ,"weather":{"value":weather},"temp_low":{"value":temp_low,"color":temp_low_color},"temp_high":{"value":temp_high,"color":temp_high_color},"next_words":{"value":"每一天都值得铭记↓","color":"#FFB6C1"},"next_words2":{"value":"余生有幸和你在一起","color":"#FFB6C1"},"love_days":{"value":get_count()},"marry_days":{"value":get_count2()},"birthday_left":get_birthday(),"marry_left":{"value":get_marry_left()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)

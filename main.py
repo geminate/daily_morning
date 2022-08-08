@@ -58,7 +58,9 @@ def get_birthday():
   if birth < datetime.now():
     birth = ZhDate(date.today().year + 1, int(birthday_m), int(birthday_d)).to_datetime()
   diff = birth.toordinal() - today.toordinal()
-  return diff
+  if diff == 0:
+    return "今天是你的生日~ 🎂生日快乐"
+  return "距离你的生日还有 " + str(diff) + "天"
 
 def get_marry_left():
   next = datetime.strptime(str(date.today().year) + "-" + marry, "%Y-%m-%d")

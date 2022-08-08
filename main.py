@@ -55,6 +55,8 @@ def get_count2():
 
 def get_birthday():
   birth = ZhDate(date.today().year, int(birthday_m), int(birthday_d)).to_datetime()
+  if birth < datetime.now():
+    birth = ZhDate(date.today().year + 1, int(birthday_m), int(birthday_d)).to_datetime()
   diff = birth.toordinal() - today.toordinal()
   return diff
 

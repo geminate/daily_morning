@@ -11,7 +11,8 @@ today = datetime.now()
 start_date = os.environ['START_DATE']
 start_marry_date = os.environ['MARRY_START_DATE']
 city = os.environ['CITY']
-birthday = os.environ['BIRTHDAY']
+birthday_m = os.environ['BIRTHDAY_M']
+birthday_d = os.environ['BIRTHDAY_D']
 marry = os.environ['MARRY']
 
 app_id = os.environ["APP_ID"]
@@ -53,7 +54,7 @@ def get_count2():
   return delta.days
 
 def get_birthday():
-  birth = ZhDate(date.today().year, 8, 15).to_datetime()
+  birth = ZhDate(date.today().year, birthday_m, birthday_d).to_datetime()
   diff = birth.toordinal() - today.toordinal()
   return diff
 

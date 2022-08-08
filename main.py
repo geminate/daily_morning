@@ -26,7 +26,7 @@ def get_weather():
   weather_words = '今天的天气与你一样美好o(*￣▽￣*)ブ'
   weather_words_color = '#FA9F4E'
 
-  if weather['weather'].find('雨') !== -1
+  if weather['weather'].find('雨') != -1
     weather_words = '今天有雨，亲爱的记得带伞~'
     weather_words_color = '#54D8FF'
 

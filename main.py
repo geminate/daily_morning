@@ -5,6 +5,7 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
+from zhdate import ZhDate
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
@@ -52,10 +53,9 @@ def get_count2():
   return delta.days
 
 def get_birthday():
-  next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-  if next < datetime.now():
-    next = next.replace(year=next.year + 1)
-  return (next - today).days
+  birth = ZhDate(str(date.today().year), 8, 15).to_datetime()
+  diff = birth.toordinal() - today.toordinal()
+  return diff
 
 def get_marry_left():
   next = datetime.strptime(str(date.today().year) + "-" + marry, "%Y-%m-%d")

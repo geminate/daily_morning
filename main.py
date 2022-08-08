@@ -53,7 +53,7 @@ def get_count2():
   return delta.days
 
 def get_birthday():
-  birth = ZhDate(str(date.today().year), 8, 15).to_datetime()
+  birth = ZhDate(date.today().year, 8, 15).to_datetime()
   diff = birth.toordinal() - today.toordinal()
   return diff
 

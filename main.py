@@ -26,17 +26,17 @@ def get_weather():
   weather_words = '今天的天气与你一样美好o(*￣▽￣*)ブ'
   weather_words_color = '#FA9F4E'
 
-  if weather['weather'].find('雨') != -1
+  if weather['weather'].find('雨') != -1:
     weather_words = '今天有雨，亲爱的记得带伞~'
     weather_words_color = '#54D8FF'
 
   low_color = '#000000'
   high_color = '#000000'
 
-  if math.floor(weather['low']) <= 0
+  if math.floor(weather['low']) <= 0:
     low_color = '#54D8FF'
 
-  if math.floor(weather['high']) >= 30
+  if math.floor(weather['high']) >= 30:
       low_color = '#EE212D'
 
   return weather_words, weather_words_color, weather['weather'], math.floor(weather['low']), low_color, math.floor(weather['high']), high_color

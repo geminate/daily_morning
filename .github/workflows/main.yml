@@ -30,6 +30,7 @@ jobs:
       START_DATE: ${{ secrets.START_DATE }}
       BIRTHDAY_M: ${{ secrets.BIRTHDAY_M }}
       BIRTHDAY_D: ${{ secrets.BIRTHDAY_D }}
+      BIRTHDAY: ${{ secrets.BIRTHDAY }}
       CITY: ${{ secrets.CITY }}
       MARRY_START_DATE: ${{ secrets.MARRY_START_DATE }}
       MARRY: ${{ secrets.MARRY }}

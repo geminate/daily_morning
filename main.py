@@ -85,9 +85,9 @@ def get_marry_left():
   return {"value":"距离我们的结婚纪念日还有 " + str(diff) + "天"}
 
 def get_child_left():
-   diff = (datetime.strptime(str(last_day), "%Y-%m-%d") + timedelta(days = 280)).toordinal() - today.toordinal() + 1
-    pro = round((280-diff) / 280 * 100,2)
-    return {"value":"距离我们的宝宝出生预计还有 " + str(diff) + "天, 进度："+ str(pro) +"%"}
+  diff = (datetime.strptime(str(last_day), "%Y-%m-%d") + timedelta(days = 280)).toordinal() - today.toordinal() + 1
+  pro = round((280-diff) / 280 * 100,2)
+  return {"value":"距离我们的宝宝出生预计还有 " + str(diff) + "天, 进度："+ str(pro) +"%"}
 
 def get_child_weeks():
   ext = today.toordinal() - (datetime.strptime(str(last_day),"%Y-%m-%d") + timedelta(days = 1)).toordinal()

@@ -15,6 +15,7 @@ birthday_m = os.environ['BIRTHDAY_M']
 birthday_d = os.environ['BIRTHDAY_D']
 birthday = os.environ['BIRTHDAY']
 marry = os.environ['MARRY']
+last_day = os.environ['LAST_DAY']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
@@ -83,6 +84,19 @@ def get_marry_left():
     return {"value":"今天是我们两个的结婚纪念日~ 庆祝一下吧","color":"#FA9F4E"}
   return {"value":"距离我们的结婚纪念日还有 " + str(diff) + "天"}
 
+def get_child_left():
+   diff = (datetime.strptime(str(last_day), "%Y-%m-%d") + timedelta(days = 280)).toordinal() - today.toordinal() + 1
+    pro = round((280-diff) / 280 * 100,2)
+    return {"value":"距离我们的宝宝出生预计还有 " + str(diff) + "天, 进度："+ str(pro) +"%"}
+
+def get_child_weeks():
+  ext = today.toordinal() - (datetime.strptime(str(last_day),"%Y-%m-%d") + timedelta(days = 1)).toordinal()
+  we = str(int( ext / 7))
+  da = str(ext % 7)
+  mm = str(int( ext / 30))
+  dam = str(ext % 30)
+  return {"value":"宝宝已 " + str(we) + "周"+ str(da) +"天 / " + str(mm) + "月" + str(dam) + "天" }
+
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
   if words.status_code != 200:
@@ -97,7 +111,7 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 weather_words, weather_words_color, weather, temp_low, temp_low_color, temp_high, temp_high_color = get_weather()
-data = {"today":{"value":today.strftime('%Y-%m-%d'),"color":"#87CEEB"},"weather_words":{"value":weather_words,"color":weather_words_color} ,"weather":{"value":weather},"temp_low":{"value":str(temp_low) + '℃',"color":temp_low_color},"temp_high":{"value":str(temp_high) + '℃',"color":temp_high_color},"next_words":{"value":"每一天都值得铭记↓","color":"#FFB6C1"},"next_words2":{"value":"余生有幸和你在一起","color":"#FFB6C1"},"love_days":{"value":get_count()},"marry_days":{"value":get_count2()},"birthday_left":get_birthday(),"birthday_left2":get_birthday2(),"marry_left":get_marry_left(),"words":{"value":get_words(), "color":get_random_color()}}
+data = {"today":{"value":today.strftime('%Y-%m-%d'),"color":"#87CEEB"},"weather_words":{"value":weather_words,"color":weather_words_color} ,"weather":{"value":weather},"temp_low":{"value":str(temp_low) + '℃',"color":temp_low_color},"temp_high":{"value":str(temp_high) + '℃',"color":temp_high_color},"next_words":{"value":"每一天都值得铭记↓","color":"#FFB6C1"},"next_words2":{"value":"余生有幸和你在一起","color":"#FFB6C1"},"love_days":{"value":get_count()},"marry_days":{"value":get_count2()},"birthday_left":get_birthday(),"birthday_left2":get_birthday2(),"marry_left":get_marry_left(),"child_left":get_child_left(),"child_weeks":get_child_weeks,"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
-res = wm.send_template(user_id2, template_id, data)
+# res = wm.send_template(user_id2, template_id, data)
 print(res)

@@ -33,3 +33,4 @@ jobs:
       CITY: ${{ secrets.CITY }}
       MARRY_START_DATE: ${{ secrets.MARRY_START_DATE }}
       MARRY: ${{ secrets.MARRY }}
+      LAST_DAY: ${{ secrets.LAST_DAY }}

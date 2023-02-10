@@ -11,7 +11,7 @@ today = datetime.now() + timedelta(days = 1)
 start_date = os.environ['START_DATE']
 start_marry_date = os.environ['MARRY_START_DATE']
 city = os.environ['CITY']
-city = os.environ['WEATHER_KEY']
+weatherKey = os.environ['WEATHER_KEY']
 birthday_m = os.environ['BIRTHDAY_M']
 birthday_d = os.environ['BIRTHDAY_D']
 birthday = os.environ['BIRTHDAY']

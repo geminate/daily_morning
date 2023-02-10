@@ -11,6 +11,7 @@ today = datetime.now() + timedelta(days = 1)
 start_date = os.environ['START_DATE']
 start_marry_date = os.environ['MARRY_START_DATE']
 city = os.environ['CITY']
+city = os.environ['WEATHER_KEY']
 birthday_m = os.environ['BIRTHDAY_M']
 birthday_d = os.environ['BIRTHDAY_D']
 birthday = os.environ['BIRTHDAY']
@@ -26,27 +27,29 @@ template_id = os.environ["TEMPLATE_ID"]
 
 
 def get_weather():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "http://api.yytianqi.com/forecast7d?city=" + city + "&key=" + weatherKey
   res = requests.get(url).json()
   weather = res['data']['list'][0]
 
   weather_words = '今天的天气与你一样美好o(*￣▽￣*)ブ'
   weather_words_color = '#FA9F4E'
 
-  if weather['weather'].find('雨') != -1:
+  wes = weather['tq1'] + "-" + weather['tq2']
+
+  if wes.find('雨') != -1:
     weather_words = '今天有雨，亲爱的记得带伞~'
     weather_words_color = '#54D8FF'
 
   low_color = '#000000'
   high_color = '#000000'
 
-  if math.floor(weather['low']) <= 0:
+  if math.floor(int(weather['qw2'])) <= 0:
     low_color = '#54D8FF'
 
-  if math.floor(weather['high']) >= 30:
+  if math.floor(int(weather['qw1'])) >= 30:
     high_color = '#EE212D'
 
-  return weather_words, weather_words_color, weather['weather'], math.floor(weather['low']), low_color, math.floor(weather['high']), high_color
+  return weather_words, weather_words_color, wes, math.floor(int(weather['qw2'])), low_color, math.floor(int(weather['qw1'])), high_color
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")

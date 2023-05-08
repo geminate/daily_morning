@@ -25,9 +25,6 @@ user_id = os.environ["USER_ID"]
 user_id2 = os.environ["USER_ID2"]
 template_id = os.environ["TEMPLATE_ID"]
 
-console.log()
-
-
 def get_weather():
   url = "http://api.yytianqi.com/forecast7d?city=" + city + "&key=" + weatherKey
   res = requests.get(url).json()

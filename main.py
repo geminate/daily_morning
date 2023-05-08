@@ -25,6 +25,8 @@ user_id = os.environ["USER_ID"]
 user_id2 = os.environ["USER_ID2"]
 template_id = os.environ["TEMPLATE_ID"]
 
+console.log()
+
 
 def get_weather():
   url = "http://api.yytianqi.com/forecast7d?city=" + city + "&key=" + weatherKey
@@ -115,6 +117,8 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 weather_words, weather_words_color, weather, temp_low, temp_low_color, temp_high, temp_high_color = get_weather()
 data = {"today":{"value":today.strftime('%Y-%m-%d'),"color":"#87CEEB"},"weather_words":{"value":weather_words,"color":weather_words_color} ,"weather":{"value":weather},"temp_low":{"value":str(temp_low) + '℃',"color":temp_low_color},"temp_high":{"value":str(temp_high) + '℃',"color":temp_high_color},"next_words":{"value":"每一天都值得铭记↓","color":"#FFB6C1"},"next_words2":{"value":"余生有幸和你在一起","color":"#FFB6C1"},"love_days":{"value":get_count()},"marry_days":{"value":get_count2()},"birthday_left":get_birthday(),"birthday_left2":get_birthday2(),"marry_left":get_marry_left(),"child_left":get_child_left(),"child_weeks":get_child_weeks(),"words":{"value":get_words(), "color":get_random_color()}}
-res = wm.send_template(user_id, template_id, data)
-res = wm.send_template(user_id2, template_id, data)
-print(res)
+# res = wm.send_template(user_id, template_id, data)
+# res = wm.send_template(user_id2, template_id, data)
+print(os.environ['START_DATE'],os.environ['MARRY_START_DATE'],os.environ['CITY'], os.environ['WEATHER_KEY'],os.environ['BIRTHDAY_M'],os.environ['BIRTHDAY_D'],os.environ['BIRTHDAY'],os.environ['MARRY'],os.environ['LAST_DAY'],os.environ["APP_ID"],os.environ["APP_SECRET"],os.environ["USER_ID"],os.environ["USER_ID2"],os.environ["TEMPLATE_ID"])
+print(data)
+# print(res)

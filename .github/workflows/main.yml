@@ -30,6 +30,8 @@ jobs:
       BIRTHDAY_M: ${{ secrets.BIRTHDAY_M }}
       BIRTHDAY_D: ${{ secrets.BIRTHDAY_D }}
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
+      BIRTHDAY_CHILD: ${{ secrets.BIRTHDAY_CHILD }}
+      BIRTHDAY_CHILD_DATE: ${{ secrets.BIRTHDAY_CHILD_DATE }}
       CITY: ${{ secrets.CITY }}
       WEATHER_KEY: ${{ secrets.WEATHER_KEY }}
       MARRY_START_DATE: ${{ secrets.MARRY_START_DATE }}

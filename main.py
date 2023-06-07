@@ -66,7 +66,7 @@ def get_count2():
 
 def get_count3():
   delta = today - datetime.strptime(birthday_child, "%Y-%m-%d")
-  return  " 今天是筱月出生的 第"+str(delta.days)+"天 "
+  return  " 今天是筱玥出生的 第"+str(delta.days)+"天 "
 
 def get_birthday():
   birth = ZhDate(today.year, int(birthday_m), int(birthday_d)).to_datetime()
@@ -92,8 +92,8 @@ def get_birthday3():
     next = next.replace(year=next.year + 1)
   diff = next.toordinal() - today.toordinal()
   if diff == 0:
-    return {"value":" 今天是筱月的生日~ 祝他生日快乐 ","color":"#FA9F4E"}
-  return {"value":" 距离筱月的生日还有 " + str(diff) + "天 "}
+    return {"value":" 今天是筱玥的生日~ 祝他生日快乐 ","color":"#FA9F4E"}
+  return {"value":" 距离筱玥的生日还有 " + str(diff) + "天 "}
 
 
 def get_marry_left():
@@ -114,7 +114,7 @@ def get_child_weeks():
   years = rd.years
   months = rd.months
   days = rd.days
-  return {"value":" 筱月已 "+ str(years) +"岁"+ str(months) + "月" + str(days) + "天 " }
+  return {"value":" 筱玥已 "+ str(years) +"岁"+ str(months) + "月" + str(days) + "天 " }
 
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
